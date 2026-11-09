@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>StepBoard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <!-- math.js lets the board calculate graph curves safely -->
+  <script src="/vendor/math.js"></script>
+</head>
+<body>
+  <header>
+    <div class="logo">Step<span>Board</span></div>
+    <div class="settings">
+      <select id="mode" title="Mode">
+        <option value="explain">💡 Explain a topic</option>
+        <option value="homework">✏️ Homework (hints only)</option>
+        <option value="exam">📝 Exam prep</option>
+      </select>
+      <select id="language" title="Language">
+        <option>English</option>
+        <option>Amharic</option>
+        <option>Spanish</option>
+        <option>French</option>
+        <option>Arabic</option>
+        <option>Chinese</option>
+        <option>Hindi</option>
+      </select>
+      <label class="toggle"><input type="checkbox" id="voiceOn" checked /> 🔊 Voice</label>
+    </div>
+  </header>
+
+  <main>
+    <section class="board-wrap">
+      <div class="board-top">
+        <h2 id="lessonTitle">Ask anything to start</h2>
+        <span id="aiBadge"></span>
+      </div>
+
+      <svg id="board" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid meet" aria-label="Whiteboard">
+        <defs id="defs"></defs>
+        <g id="layer"></g>
+      </svg>
+
+      <div id="caption" class="caption"></div>
+
+      <div class="board-controls">
+        <button type="button" id="stopBtn">⏹ Stop</button>
+        <button type="button" id="replayBtn">↺ Replay</button>
+        <button type="button" id="clearBtn">🧽 Clear board</button>
+        <button type="button" id="newBtn">✨ New lesson</button>
+      </div>
+
+      <div id="quiz"></div>
+    </section>
+
+    <aside class="chat">
+      <div id="log">
+        <div class="ideas" id="ideas">
+          <p>Try one:</p>
+          <button type="button" data-q="What is a derivative, really?">📈 What is a derivative, really?</button>
+          <button type="button" data-q="Why is the sky blue but sunsets red?">🌅 Why is the sky blue but sunsets red?</button>
+          <button type="button" data-q="How does a vaccine teach your immune system?">💉 How does a vaccine work?</button>
+          <button type="button" data-q="Solve 2x + 5 = 17" data-mode="homework">✏️ Solve 2x + 5 = 17 (homework)</button>
+        </div>
+      </div>
+      <div id="status"></div>
+      <div id="attachPreview"></div>
+      <form id="askForm">
+        <textarea id="input" rows="2" placeholder="Ask a question, answer the tutor, or paste your notes…"></textarea>
+        <div class="row">
+          <label class="icon-btn" title="Add a photo">📷<input type="file" id="fileInput" accept="image/*" hidden /></label>
+          <button type="button" class="icon-btn" id="micBtn" title="Speak your question">🎤</button>
+          <button type="submit" id="sendBtn">Ask</button>
+        </div>
+      </form>
+    </aside>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
